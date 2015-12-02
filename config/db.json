@@ -1,6 +1,7 @@
 {
   "db_host": "localhost",
-  "db_name": "demo-orm",
+  "db_name": "orm_test",
   "db_user": "root",
-  "db_password": ""
+  "db_password": "root",
+  "db_driver": "pdo"
 }

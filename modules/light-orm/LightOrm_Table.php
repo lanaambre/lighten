@@ -4,39 +4,47 @@ abstract class LightOrm_Table
 {
   private $db;
 
-  public function __construct($db_infos)
+  public function __construct()
   {
-    $this->db = new \PDO('mysql:host=' . $db_infos['db_host'] . ';dbname=' . $db_infos['db_name'], $db_infos['db_user'], $db_infos['db_password']);
+    $this->db = LightOrm_Config::getConnexion();
   }
 
   public function getAll()
   {
-    // $query = new LightOrm_QueryBuilder($this->db);
-    // $query->select('*')
-    //       ->from($this->table)
-    //       ->execute();
-
-    $query = $this->db->prepare('SELECT * FROM ' . $this->table);
-    $query->execute();
-
-    return $query->fetchAll();
+    $req = new LightOrm_QueryBuilder;
+    $res = $req->select()
+               ->from($this->table)
+               ->execute()
+               ->fetchAll();
+    return $res;
   }
 
-  public function getById($id, $fields = [])
+  public function getById($id)
   {
-    $query = $this->db->prepare('SELECT * FROM ' . $this->table . ' WHERE id = :id');
-    $query->execute([
-      'id' => $id,
-    ]);
-    return $query->fetchAll();
+    $req = new LightOrm_QueryBuilder;
+    $res = $req->select()
+               ->from($this->table)
+               ->where([
+                 'id' => $id,
+               ])
+               ->execute()
+               ->fetchAll();
+    return $res;
   }
 
-  public function getBy($column, $value)
+  public function getBy($column, $value = null)
   {
-    $query = $this->db->prepare('SELECT * FROM ' . $this->table . ' WHERE ' . $column . ' = :' . $column);
-    $query->execute([
-      $column => $value,
-    ]);
-    return $query->fetchAll();
+    if (is_array($column))
+      $where = $column;
+    else
+      $where = [ $column => $value ];
+
+    $req = new LightOrm_QueryBuilder;
+    $res = $req->select()
+               ->from($this->table)
+               ->where($where)
+               ->execute()
+               ->fetchAll();
+    return $res;
   }
 }

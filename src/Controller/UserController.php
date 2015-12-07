@@ -6,9 +6,9 @@ use Model\User;
 
 class UserController
 {
-    public function __construct($db_infos)
+    public function __construct()
     {
-      $users = new User($db_infos);
+      $users = new User();
       echo "getAll()\n";
       var_dump($users->getAll());
 

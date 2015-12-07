@@ -5,6 +5,10 @@ require_once 'autoload.php';
 
 use Controller\UserController;
 
-$db_info = json_decode(file_get_contents('config/db.json'), true);
+$db_infos = json_decode(file_get_contents('config/db.json'), true);
 
-$home = new UserController($db_info);
+// $kernel = new Kernel;
+
+LightOrm_Config::init($db_infos);
+
+$home = new UserController();

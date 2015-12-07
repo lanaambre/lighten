@@ -52,4 +52,11 @@ abstract class LightOrm_Table
                ->fetchAll();
     return $res;
   }
+
+  public function query()
+  {
+    $query = new LightOrm_QueryBuilder;
+    $query->from($this->table);
+    return $query;
+  }
 }

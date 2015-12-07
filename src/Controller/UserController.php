@@ -10,7 +10,7 @@ class UserController
     {
       $users = new User();
       echo "getAll()\n";
-      var_dump($users->getAll());
+      var_dump($users->test());
 
       echo "getById(2)\n";
       var_dump($users->getById(2));

@@ -6,6 +6,8 @@ public/media/
 public/fonts/
 public/bower_components
 
+config/
+
 #   Compiled source   #
 #######################
 *.com

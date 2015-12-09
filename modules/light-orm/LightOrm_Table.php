@@ -6,12 +6,11 @@ class LightOrm_Table
 
   public function __construct() {
     $this->class = get_class($this);
-    var_dump($this->class);
   }
 
   public function getAll()
   {
-    $req = new LightOrm_QueryBuilder;
+    $req = new LightOrm_QueryBuilder($this->class);
     $res = $req->select()
                ->from($this->table)
                ->execute()
@@ -26,7 +25,7 @@ class LightOrm_Table
     else
       $where = [];
 
-    $req = new LightOrm_QueryBuilder;
+    $req = new LightOrm_QueryBuilder($this->class);
     $res = $req->select()
                ->from($this->table)
                ->where($where)
@@ -44,7 +43,7 @@ class LightOrm_Table
     else
       $where = [];
 
-    $req = new LightOrm_QueryBuilder;
+    $req = new LightOrm_QueryBuilder($this->class);
     $res = $req->select()
                ->from($this->table)
                ->where($where)
@@ -53,9 +52,9 @@ class LightOrm_Table
     return $res;
   }
 
-  public function query()
+  protected function query()
   {
-    $req = new LightOrm_QueryBuilder;
+    $req = new LightOrm_QueryBuilder($this->class);
     $req->from($this->table);
     return $req;
   }

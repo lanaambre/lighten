@@ -3,6 +3,7 @@
 class LightOrm_QueryBuilder
 {
   private $db;
+  private $class;
 
   private $query;
 
@@ -10,8 +11,9 @@ class LightOrm_QueryBuilder
   private $from;
   private $where = [];
 
-  public function __construct()
+  public function __construct($class)
   {
+    $this->class = $class;
     $this->db = LightOrm_Config::getConnexion();
   }
 
@@ -66,9 +68,29 @@ class LightOrm_QueryBuilder
     return $this;
   }
 
-  public function fetchAll()
+  public function fetchAll($objectMode = true)
   {
-    $res = $this->query->fetchAll();
+    $res = $this->query->fetchAll(\PDO::FETCH_ASSOC);
+
+    if ($objectMode)
+      return $this->hydration($res);
+    return $res;
+  }
+
+  private function hydration($raw)
+  {
+    $res = [];
+
+    foreach ($raw as $key => $data) {
+      $entity = new $this->class();
+
+      foreach ($data as $key => $value) {
+        $method = 'set' . ucfirst($key);
+        $entity->$method($value);
+      }
+      array_push($res, $entity);
+    }
+
     return $res;
   }
 
@@ -79,8 +101,16 @@ class LightOrm_QueryBuilder
 
     if (!empty($this->where) && is_array($this->where)) {
       $build .= ' WHERE ';
+      $index = 1;
+      $count = count($this->where);
+
       foreach ($this->where as $key => $value) {
         $build .= $key . ' = :' . $key;
+
+        if ($index < $count) {
+          $build .= ' AND ';
+          $index++;
+        }
       }
     }
 

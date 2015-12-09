@@ -6,48 +6,49 @@ class User extends \LightOrm_Table
 {
   protected $table = 'users';
 
-  protected $data = [
-    'id' => null,
-    'name' => null,
-    'password' => null,
-    'active' => null
-  ];
-
-  protected $dataJoin;
+  protected $id;
+  protected $username;
+  protected $password;
+  protected $active;
 
   public function getId()
-  {
-    return $this->data['id'];
-  }
-
-  public function getName()
   {
     return $this->id;
   }
 
-  public function setName($name)
+  public function setId($id)
   {
-    $this->data['name'] = $name;
+    $this->id = $id;
+  }
+
+  public function getUsername()
+  {
+    return $this->username;
+  }
+
+  public function setUsername($username)
+  {
+    $this->username = $username;
   }
 
   public function getPassword()
   {
-    return $this->id;
+    return $this->password;
   }
 
   public function setPassword($password)
   {
-    $this->data['password'] = $password;
+    $this->password = $password;
   }
 
   public function getActive()
   {
-    return $this->id;
+    return $this->active;
   }
 
   public function setActive($active)
   {
-    $this->data['active'] = $active;
+    $this->active = $active;
   }
 
   public function customQueryExample()

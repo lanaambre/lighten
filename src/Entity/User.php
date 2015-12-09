@@ -11,6 +11,9 @@ class User extends \LightOrm_Table
   protected $password;
   protected $active;
 
+  // Jointures
+  protected $messages;
+
   public function getId()
   {
     return $this->id;

@@ -8,11 +8,17 @@ class LightOrm_Table
     $this->class = get_class($this);
   }
 
-  public function getAll()
+  protected function query()
   {
     $req = new LightOrm_QueryBuilder($this->class);
+    $req->from($this->table);
+    return $req;
+  }
+
+  public function getAll()
+  {
+    $req = $this->query();
     $res = $req->select()
-               ->from($this->table)
                ->execute()
                ->fetchAll();
     return $res;
@@ -25,9 +31,8 @@ class LightOrm_Table
     else
       $where = [];
 
-    $req = new LightOrm_QueryBuilder($this->class);
+    $req = $this->query();
     $res = $req->select()
-               ->from($this->table)
                ->where($where)
                ->execute()
                ->fetchAll();
@@ -43,19 +48,11 @@ class LightOrm_Table
     else
       $where = [];
 
-    $req = new LightOrm_QueryBuilder($this->class);
+    $req = $this->query();
     $res = $req->select()
-               ->from($this->table)
                ->where($where)
                ->execute()
                ->fetchAll();
     return $res;
-  }
-
-  protected function query()
-  {
-    $req = new LightOrm_QueryBuilder($this->class);
-    $req->from($this->table);
-    return $req;
   }
 }

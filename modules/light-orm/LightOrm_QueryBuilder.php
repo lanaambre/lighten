@@ -40,9 +40,13 @@ class LightOrm_QueryBuilder
     return $this;
   }
 
-  public function join()
+  public function join($join)
   {
-
+    if (is_array($join)) {
+      foreach ($join as $key => $value) {
+        $this->join[$key] = $value;
+      }
+    }
   }
 
   public function innerJoin()
@@ -94,7 +98,9 @@ class LightOrm_QueryBuilder
     return $res;
   }
 
-  // Builder
+  /*
+    Builder
+  */
   private function whereBuilder()
   {
     $build = '';
@@ -115,5 +121,10 @@ class LightOrm_QueryBuilder
     }
 
     return $build;
+  }
+
+  private function joinBuilder()
+  {
+
   }
 }

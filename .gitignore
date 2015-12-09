@@ -5,8 +5,7 @@ node_modules/
 public/media/
 public/fonts/
 public/bower_components
-
-config/
+config
 
 #   Compiled source   #
 #######################

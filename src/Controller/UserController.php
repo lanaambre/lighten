@@ -2,15 +2,16 @@
 
 namespace Controller;
 
-use Model\User;
+use Entity\User;
 
 class UserController
 {
     public function __construct()
     {
       $users = new User();
+
       echo "getAll()\n";
-      var_dump($users->test());
+      var_dump($users->getAll());
 
       echo "getById(2)\n";
       var_dump($users->getById(2));

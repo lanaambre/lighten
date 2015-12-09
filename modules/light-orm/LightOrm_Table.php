@@ -1,12 +1,12 @@
 <?php
 
-abstract class LightOrm_Table
+class LightOrm_Table
 {
-  private $db;
+  private $class;
 
-  public function __construct()
-  {
-    $this->db = LightOrm_Config::getConnexion();
+  public function __construct() {
+    $this->class = get_class($this);
+    var_dump($this->class);
   }
 
   public function getAll()
@@ -55,8 +55,8 @@ abstract class LightOrm_Table
 
   public function query()
   {
-    $query = new LightOrm_QueryBuilder;
-    $query->from($this->table);
-    return $query;
+    $req = new LightOrm_QueryBuilder;
+    $req->from($this->table);
+    return $req;
   }
 }

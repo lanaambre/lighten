@@ -11,9 +11,6 @@ class User extends \LightOrm_Table
   protected $password;
   protected $active;
 
-  // Jointures
-  protected $messages;
-
   public function getId()
   {
     return $this->id;
@@ -56,11 +53,14 @@ class User extends \LightOrm_Table
 
   public function customQueryExample()
   {
+    // $req = $this->query();
+    // $res = $req->select()
+    //            ->execute()
+    //            ->fetchAll();
+    // return $res;
+
     $req = $this->query();
-    $res = $req->select()
-               ->execute()
-               ->fetchAll();
-    return $res;
+    $req->persist();
   }
 
 }

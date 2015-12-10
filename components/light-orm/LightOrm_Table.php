@@ -65,6 +65,6 @@ class LightOrm_Table
   public function persist()
   {
     $req = $this->query();
-
+    var_dump(get_object_vars($this));
   }
 }

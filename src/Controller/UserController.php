@@ -10,7 +10,13 @@ class UserController
     {
       $users = new User();
 
-      $usersList = $users->getBy('username', 'Antoine');
-      var_dump($usersList);
+      // $usersList = $users->getBy('username', 'Antoine');
+      // var_dump($usersList);
+
+      $user = new User();
+      $user->setUsername('Junior');
+      $user->setPassword('azerty');
+      $user->setActive(true);
+      $user->persist();
     }
 }

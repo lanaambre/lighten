@@ -107,8 +107,16 @@ class LightOrm_QueryBuilder
 
   public function update($data)
   {
-    // var_dump('update');
-    // var_dump($data);
+    $data = $this->clearData($data);
+    $set = $this->updateSetBuilder($data);
+
+    $where = !empty($data['id']) ? 'id = :id' : $this->whereBuilder($data);
+    $whereValues = !empty($data['id']) ? ['id' => $data['id']] : $data;
+
+    $sql = 'UPDATE ' . $this->from . ' SET ' . $set . ' WHERE ' . $where;
+
+    $this->query = $this->db->prepare($sql);
+    return $this->query->execute($whereValues);
   }
 
   public function insert($data)
@@ -156,6 +164,7 @@ class LightOrm_QueryBuilder
   /*
     Builder
   */
+
   private function whereBuilder()
   {
     $build = '';
@@ -169,15 +178,6 @@ class LightOrm_QueryBuilder
     }
 
     return rtrim($build, ' AND ');
-  }
-
-  private function joinBuilder()
-  {
-    $build = '';
-
-    // To Do
-
-    return $build;
   }
 
   private function insertColumnsBuilder($data)
@@ -197,6 +197,19 @@ class LightOrm_QueryBuilder
 
     foreach ($data as $column => $value) {
       $build .= ':' . $column . ', ';
+    }
+
+    return rtrim($build, ', ');
+  }
+
+  private function updateSetBuilder($data)
+  {
+    $build = '';
+
+    foreach ($data as $column => $value) {
+      if (is_string($value))
+        $value = '\'' . $value . '\'';
+      $build .= $column . '=' . $value . ', ';
     }
 
     return rtrim($build, ', ');

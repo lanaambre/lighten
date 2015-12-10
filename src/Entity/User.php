@@ -50,17 +50,4 @@ class User extends \LightOrm_Table
   {
     $this->active = $active;
   }
-
-  public function customQueryExample()
-  {
-    // $req = $this->query();
-    // $res = $req->select()
-    //            ->execute()
-    //            ->fetchAll();
-    // return $res;
-
-    $req = $this->query();
-    $req->persist();
-  }
-
 }

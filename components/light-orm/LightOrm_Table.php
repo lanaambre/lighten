@@ -35,7 +35,7 @@ class LightOrm_Table
     else
       return $req->insert($data);
   }
-  
+
   // Default methods
   public function getAll()
   {

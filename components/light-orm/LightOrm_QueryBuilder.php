@@ -107,15 +107,66 @@ class LightOrm_QueryBuilder
 
   public function update($data)
   {
-    var_dump('update');
-    var_dump($data);
+    // var_dump('update');
+    // var_dump($data);
   }
 
   public function insert($data)
   {
-    var_dump('insert');
-    var_dump($data);
+    $data = $this->clearData($data);
+    $columns = $this->insertColumnsBuilder($data);
+    $values = $this->insertValuesBuilder($data);
+
+    $sql = 'INSERT INTO ' . $this->from . '(' . $columns . ') VALUES (' . $values . ')';
+    var_dump($sql);
+
+    $this->query = $this->db->prepare($sql);
+    $res = $this->query->execute($data);
+    var_dump($res);
+    // $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
+    // $this->query->execute($this->where);
+    //
+    // return $this;
+    //
+    // $request = $this->_conn->prepare('INSERT INTO users(name,password,salt) VALUES (:name,:password,:salt)');
+	  //       $response = $request->execute ([
+	  //       'name' => $pseudo,
+	  //       'password' => $pass,
+	  //       'salt' => $salt
+	  //       ]);
+	  //       return $response;
   }
+
+  public function delete($data)
+  {
+    // To do
+  }
+
+  public function deleteById($id)
+  {
+    // To do
+  }
+
+  public function deleteWhere($data)
+  {
+    // To do
+  }
+
+
+  /*
+    Traitement
+  */
+
+  // Remove null columns before insert or update
+  private function clearData($data)
+  {
+    foreach ($data as $key => $value) {
+      if (is_null($value))
+        unset($data[$key]);
+    }
+    return $data;
+  }
+
   /*
     Builder
   */
@@ -148,5 +199,27 @@ class LightOrm_QueryBuilder
     // To Do
 
     return $build;
+  }
+
+  private function insertColumnsBuilder($data)
+  {
+    $build = '';
+
+    foreach ($data as $column => $value) {
+      $build .= $column . ', ';
+    }
+
+    return rtrim($build, ', ');
+  }
+
+  private function insertValuesBuilder($data)
+  {
+    $build = '';
+
+    foreach ($data as $column => $value) {
+      $build .= ':' . $column . ', ';
+    }
+
+    return rtrim($build, ', ');
   }
 }

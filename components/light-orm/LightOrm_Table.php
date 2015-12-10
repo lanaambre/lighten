@@ -21,6 +21,22 @@ class LightOrm_Table
     $this->_update = true;
   }
 
+  public function persist()
+  {
+    $data = get_object_vars($this);
+    unset($data['table']);
+    unset($data['_class']);
+    unset($data['_update']);
+
+    $req = $this->query();
+
+    if ($this->_update)
+      return $req->update($data);
+    else
+      return $req->insert($data);
+  }
+  
+  // Default methods
   public function getAll()
   {
     $req = $this->query();
@@ -60,11 +76,5 @@ class LightOrm_Table
                ->execute()
                ->fetchAll();
     return $res;
-  }
-
-  public function persist()
-  {
-    $req = $this->query();
-    var_dump(get_object_vars($this));
   }
 }

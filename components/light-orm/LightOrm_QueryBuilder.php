@@ -105,6 +105,17 @@ class LightOrm_QueryBuilder
     return $res;
   }
 
+  public function update($data)
+  {
+    var_dump('update');
+    var_dump($data);
+  }
+
+  public function insert($data)
+  {
+    var_dump('insert');
+    var_dump($data);
+  }
   /*
     Builder
   */

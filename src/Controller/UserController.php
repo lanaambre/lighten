@@ -10,7 +10,7 @@ class UserController
     {
       $users = new User();
 
-      $usersList = $users->getBy();
+      $usersList = $users->getBy('username', 'Antoine');
       var_dump($usersList);
     }
 }

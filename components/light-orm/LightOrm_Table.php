@@ -2,17 +2,23 @@
 
 class LightOrm_Table
 {
-  private $class;
+  private $_class;
+  private $_update = false;
 
   public function __construct() {
-    $this->class = get_class($this);
+    $this->_class = get_class($this);
   }
 
   protected function query()
   {
-    $req = new LightOrm_QueryBuilder($this->class);
+    $req = new LightOrm_QueryBuilder($this->_class);
     $req->from($this->table);
     return $req;
+  }
+
+  public function _toUpdate()
+  {
+    $this->_update = true;
   }
 
   public function getAll()
@@ -54,5 +60,11 @@ class LightOrm_Table
                ->execute()
                ->fetchAll();
     return $res;
+  }
+
+  public function persist()
+  {
+    $req = $this->query();
+
   }
 }

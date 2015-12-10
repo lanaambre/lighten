@@ -29,6 +29,12 @@ class LightOrm_QueryBuilder
     return $this;
   }
 
+  // Alias of from function
+  public function in($in)
+  {
+    return $this->from($in);
+  }
+
   public function where($where)
   {
     if (is_array($where)) {
@@ -87,6 +93,7 @@ class LightOrm_QueryBuilder
 
     foreach ($raw as $key => $data) {
       $entity = new $this->class();
+      $entity->_toUpdate();
 
       foreach ($data as $key => $value) {
         $method = 'set' . ucfirst($key);
@@ -125,6 +132,10 @@ class LightOrm_QueryBuilder
 
   private function joinBuilder()
   {
+    $build = '';
 
+    // To Do
+
+    return $build;
   }
 }

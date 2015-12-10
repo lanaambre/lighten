@@ -118,23 +118,9 @@ class LightOrm_QueryBuilder
     $values = $this->insertValuesBuilder($data);
 
     $sql = 'INSERT INTO ' . $this->from . '(' . $columns . ') VALUES (' . $values . ')';
-    var_dump($sql);
 
     $this->query = $this->db->prepare($sql);
     $res = $this->query->execute($data);
-    var_dump($res);
-    // $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
-    // $this->query->execute($this->where);
-    //
-    // return $this;
-    //
-    // $request = $this->_conn->prepare('INSERT INTO users(name,password,salt) VALUES (:name,:password,:salt)');
-	  //       $response = $request->execute ([
-	  //       'name' => $pseudo,
-	  //       'password' => $pass,
-	  //       'salt' => $salt
-	  //       ]);
-	  //       return $response;
   }
 
   public function delete($data)
@@ -176,20 +162,13 @@ class LightOrm_QueryBuilder
 
     if (!empty($this->where) && is_array($this->where)) {
       $build .= ' WHERE ';
-      $index = 1;
-      $count = count($this->where);
 
       foreach ($this->where as $key => $value) {
-        $build .= $key . ' = :' . $key;
-
-        if ($index < $count) {
-          $build .= ' AND ';
-          $index++;
-        }
+        $build .= $key . ' = :' . $key . ' AND ';
       }
     }
 
-    return $build;
+    return rtrim($build, ' AND ');
   }
 
   private function joinBuilder()

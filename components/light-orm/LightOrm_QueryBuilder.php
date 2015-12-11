@@ -29,12 +29,6 @@ class LightOrm_QueryBuilder
     return $this;
   }
 
-  // Alias of from function
-  public function in($in)
-  {
-    return $this->from($in);
-  }
-
   public function where($where)
   {
     if (is_array($where)) {

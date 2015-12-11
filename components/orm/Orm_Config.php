@@ -1,6 +1,6 @@
 <?php
 
-class LightOrm_Config
+class Orm_Config
 {
   private static $connexion;
 
@@ -12,7 +12,7 @@ class LightOrm_Config
       return;
     }
 
-    throw new Exception('Invalid or missing parameters for LightOrm_Config::init()', 1);
+    throw new Exception('Invalid or missing parameters for Orm_Config::init()', 1);
   }
 
   public static function getConnexion()

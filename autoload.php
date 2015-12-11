@@ -12,7 +12,7 @@ spl_autoload_register(function($class) {
 
   // Modules config
   $modules = [
-    'LightOrm_' => 'components/light-orm/',
+    'Orm_' => 'components/orm/',
   ];
 
   // Load modules class

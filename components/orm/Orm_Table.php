@@ -1,6 +1,6 @@
 <?php
 
-class LightOrm_Table
+class Orm_Table
 {
   private $_class;
   private $_update = false;
@@ -11,7 +11,7 @@ class LightOrm_Table
 
   protected function query()
   {
-    $req = new LightOrm_QueryBuilder($this->_class);
+    $req = new Orm_QueryBuilder($this->_class);
     $req->from($this->table);
     return $req;
   }

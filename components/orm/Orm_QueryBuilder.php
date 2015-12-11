@@ -1,6 +1,6 @@
 <?php
 
-class LightOrm_QueryBuilder
+class Orm_QueryBuilder
 {
   private $db;
   private $class;
@@ -14,7 +14,7 @@ class LightOrm_QueryBuilder
   public function __construct($class)
   {
     $this->class = $class;
-    $this->db = LightOrm_Config::getConnexion();
+    $this->db = Orm_Config::getConnexion();
   }
 
   public function select($select = '*')

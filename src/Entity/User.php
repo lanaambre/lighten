@@ -2,7 +2,7 @@
 
 namespace Entity;
 
-class User extends \LightOrm_Table
+class User extends \Orm_Table
 {
   protected $table = 'users';
 

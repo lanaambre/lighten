@@ -1,8 +1,9 @@
 <?php
 
-namespace Entity;
+namespace src\Entity;
+use components\ORM\Orm_Table;
 
-class User extends \Orm_Table
+class User extends Orm_Table
 {
   protected $table = 'users';
 

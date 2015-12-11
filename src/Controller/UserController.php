@@ -1,8 +1,8 @@
 <?php
 
-namespace Controller;
+namespace src\Controller;
 
-use Entity\User;
+use src\Entity\User;
 
 class UserController
 {

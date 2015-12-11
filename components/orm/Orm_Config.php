@@ -1,5 +1,7 @@
 <?php
 
+namespace components\ORM;
+
 class Orm_Config
 {
   private static $connexion;

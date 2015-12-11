@@ -3,7 +3,9 @@
 
 require_once '../components/autoload/autoload.php';
 
-use Controller\UserController;
+use components\ORM\Orm_Config;
+use src\Controller\UserController;
+
 
 $db_infos = json_decode(file_get_contents('../config/db.json'), true);
 

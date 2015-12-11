@@ -5,14 +5,14 @@ spl_autoload_register(function($class) {
   $class = str_replace("\\", "/", $class);
 
   // Get in src folder by default
-  if (file_exists('src/' . $class . '.php')) {
-    require_once 'src/' . $class . '.php';
+  if (file_exists('../src/' . $class . '.php')) {
+    require_once '../src/' . $class . '.php';
     return;
   }
 
   // Modules config
   $modules = [
-    'Orm_' => 'components/orm/',
+    'Orm_' => '../components/orm/',
   ];
 
   // Load modules class

@@ -1,10 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-require_once 'components/autoload/autoload.php';
+require_once 'Components/autoload/autoload.php';
 
 $db_infos = json_decode(file_get_contents('config/db.json'), true);
-Orm_Config::init($db_infos);
-$db = Orm_Config::getConnexion();
+// Orm_Config::init($db_infos);
+// $db = Orm_Config::getConnexion();
 
 var_dump($argv);

@@ -12,12 +12,13 @@ class UserController
       $entity = new User();
       $user = $entity->getBy('username', 'Antoine')[0];
       $user->setActive(true);
+      $user->persist();
 
-      // $user = new User();
-      // $user->setUsername('Jean');
-      // $user->setPassword($this->passwordHash('fkdsjf'));
-      // $user->setActive(true);
-      // $user->persist();
+      $user = new User();
+      $user->setUsername('Jean');
+      $user->setPassword($this->passwordHash('fkdsjf'));
+      $user->setActive(true);
+      $user->persist();
     }
 
     private function passwordHash($password)
@@ -25,5 +26,5 @@ class UserController
       return hash('sha512', $password);
     }
 
-    
+
 }

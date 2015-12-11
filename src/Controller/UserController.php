@@ -24,4 +24,6 @@ class UserController
     {
       return hash('sha512', $password);
     }
+
+    
 }

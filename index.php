@@ -1,7 +1,7 @@
 <pre>
 <?php
 
-require_once 'autoload.php';
+require_once 'components/autoload/autoload.php';
 
 use Controller\UserController;
 

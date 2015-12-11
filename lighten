@@ -10,4 +10,5 @@ $db_infos = json_decode(file_get_contents('config/db.json'), true);
 Orm_Config::init($db_infos);
 $db = Orm_Config::getConnexion();
 
-var_dump($argv);
+$query = $db->query('SHOW COLUMNS FROM users');
+var_dump($query->fetchAll(PDO::FETCH_COLUMN));

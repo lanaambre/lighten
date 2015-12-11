@@ -6,6 +6,7 @@ public/media/
 public/fonts/
 public/bower_components
 config/db.json
+config/security.json
 
 #   Compiled source   #
 #######################

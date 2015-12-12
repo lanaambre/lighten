@@ -4,7 +4,12 @@
 require_once __DIR__ . '/components/autoload/autoload.php';
 
 use components\console\Kernel;
+use components\Yaml\Yaml;
 
 $db_infos = json_decode(file_get_contents('config/db.json'), true);
+
+$test = Yaml::parse(file_get_contents('config/db.yml'));
+var_dump($test);
+
 
 new Kernel($argv, $db_infos);

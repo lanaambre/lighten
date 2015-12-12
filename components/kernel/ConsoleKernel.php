@@ -1,6 +1,6 @@
 <?php
 
-namespace components\console;
+namespace components\Kernel;
 
 use components\ORM\OrmConfig;
 

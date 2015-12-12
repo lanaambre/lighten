@@ -2,7 +2,7 @@
 
 namespace components\ORM;
 
-class Orm_Config
+class OrmConfig
 {
   private static $connexion;
 
@@ -14,7 +14,7 @@ class Orm_Config
       return;
     }
 
-    throw new Exception('Invalid or missing parameters for Orm_Config::init()', 1);
+    throw new Exception('Invalid or missing parameters for OrmConfig::init()', 1);
   }
 
   public static function getConnexion()

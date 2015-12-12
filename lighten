@@ -3,12 +3,8 @@
 
 require_once __DIR__ . '/components/autoload/autoload.php';
 
-use components\ORM\Orm_Config;
+use components\console\Kernel;
 
 $db_infos = json_decode(file_get_contents('config/db.json'), true);
 
-Orm_Config::init($db_infos);
-$db = Orm_Config::getConnexion();
-
-$query = $db->query('SHOW COLUMNS FROM users');
-var_dump($query->fetchAll(PDO::FETCH_COLUMN));
+new Kernel($argv, $db_infos);

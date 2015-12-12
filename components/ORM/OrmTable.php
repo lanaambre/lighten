@@ -3,7 +3,7 @@
 
 namespace components\ORM;
 
-class Orm_Table
+class OrmTable
 {
   private $_class;
   private $_update = false;
@@ -14,7 +14,7 @@ class Orm_Table
 
   protected function query()
   {
-    $req = new Orm_QueryBuilder($this->_class);
+    $req = new OrmQueryBuilder($this->_class);
     $req->from($this->table);
     return $req;
   }

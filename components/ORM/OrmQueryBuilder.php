@@ -2,7 +2,7 @@
 
 namespace components\ORM;
 
-class Orm_QueryBuilder
+class OrmQueryBuilder
 {
   private $db;
   private $class;
@@ -16,7 +16,7 @@ class Orm_QueryBuilder
   public function __construct($class)
   {
     $this->class = $class;
-    $this->db = Orm_Config::getConnexion();
+    $this->db = OrmConfig::getConnexion();
   }
 
   public function select($select = '*')

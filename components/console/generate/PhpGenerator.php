@@ -69,10 +69,7 @@ class PhpGenerator
 
   protected function removeTabs($numb = 1)
   {
-    for ($i=0; $i < $numb; $i++) {
-      if ($this->tabs > 0)
-        $this->tabs = $this->tabs - 1;
-    }
+    $this->tabs = $this->tabs - $numb > 0 ? $this->tabs - $numb : 0;
   }
 
   protected function addClass($name, $extends = '', $implements = '')

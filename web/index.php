@@ -7,7 +7,7 @@ use components\ORM\OrmConfig;
 use src\Controller\UserController;
 use components\Yaml\Yaml;
 
-$db_infos = Yaml::parse(file_get_contents('config/db.yml'));
+$db_infos = Yaml::parse(file_get_contents('../config/db.yml'));
 
 OrmConfig::init($db_infos);
 

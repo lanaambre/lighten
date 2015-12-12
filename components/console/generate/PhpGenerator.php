@@ -17,33 +17,12 @@ class PhpGenerator
     $this->config();
   }
 
-  protected function initCode()
-  {
-    $this->addCode('<?php');
-    $this->addLineBreak(2);
-  }
-
-  protected function addNamespace()
-  {
-    if (!empty($this->namespace)) {
-      $this->addCode('namespace ' . $this->namespace . ';');
-      $this->addLineBreak(2);
-    }
-  }
-
-  protected function addUse()
-  {
-    if (!empty($this->use)) {
-      foreach ($this->use as $value) {
-        $this->addCode('use ' . $value . ';');
-      }
-      $this->addLineBreak(2);
-    }
-  }
-
+  /**
+  * Code Format
+  **/
   protected function addCode($code)
   {
-    $this->code .= $this->doTabs() . $code;
+    $this->code .= $this->applyTabs() . $code;
   }
 
   protected function addLineBreak($numb = 1)
@@ -53,7 +32,7 @@ class PhpGenerator
     }
   }
 
-  protected function doTabs()
+  protected function applyTabs()
   {
     for ($i=0; $i < $this->tabs; $i++) {
       for ($i=0; $i < $this->tabsLength; $i++) {
@@ -72,6 +51,20 @@ class PhpGenerator
     $this->tabs = $this->tabs - $numb > 0 ? $this->tabs - $numb : 0;
   }
 
+  protected function initCode()
+  {
+    $this->addCode('<?php');
+    $this->addLineBreak(2);
+  }
+
+  protected function addComments($comments)
+  {
+    $this->addCode('// ' . $comments);
+  }
+
+  /**
+  * PHP Class
+  **/
   protected function addClass($name, $extends = '', $implements = '')
   {
     $this->addCode('class ' . $name);
@@ -91,14 +84,26 @@ class PhpGenerator
   protected function closeClass()
   {
     $this->addLineBreak();
-    var_dump($this->tabs);
     $this->removeTabs();
-    var_dump($this->tabs);
     $this->addCode('}');
+    $this->addLineBreak();
   }
 
-  protected function addComments($comments)
+  protected function addNamespace()
   {
-    $this->addCode('// ' . $comments);
+    if (!empty($this->namespace)) {
+      $this->addCode('namespace ' . $this->namespace . ';');
+      $this->addLineBreak(2);
+    }
+  }
+
+  protected function addUse()
+  {
+    if (!empty($this->use)) {
+      foreach ($this->use as $value) {
+        $this->addCode('use ' . $value . ';');
+      }
+      $this->addLineBreak(2);
+    }
   }
 }

@@ -8,6 +8,7 @@ public/bower_components
 config/db.json
 config/db.yml
 config/security.json
+test.php
 
 #   Compiled source   #
 #######################

@@ -4,7 +4,7 @@ namespace components\console;
 
 use components\ORM\OrmConfig;
 
-class Kernel
+class ConsoleKernel
 {
   private $documentation = "Lighten Documentation:\n  En cours de rédaction\n";
 

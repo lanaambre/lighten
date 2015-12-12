@@ -2,7 +2,7 @@
 
 namespace Components\Kernel;
 
-class Kernel
+class AppKernel
 {
   public function __construct()
   {

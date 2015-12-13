@@ -68,8 +68,12 @@ class OrmQueryBuilder
 
   public function execute()
   {
+    $this->select = is_array($this->select) ? $this->selectBuilder($this->select) : $this->select;
+
     $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
     $this->query->execute($this->where);
+
+    var_dump($this->query);
 
     return $this;
   }
@@ -160,6 +164,16 @@ class OrmQueryBuilder
   /*
     Builder
   */
+  private function selectBuilder($select)
+  {
+    $build = '';
+
+    foreach ($select as $column) {
+      $build .= $this->from . '.' . $column . ', ';
+    }
+
+    return rtrim($build, ', ');
+  }
 
   private function whereBuilder()
   {

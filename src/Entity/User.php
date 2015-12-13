@@ -53,4 +53,15 @@ class User extends OrmTable
   {
     $this->active = $active;
   }
+
+  public function custom()
+  {
+    $req = $this->query();
+    $req->select([
+      'username'
+    ]);
+    $req->execute();
+    $res = $req->fetchAll();
+    return $res;
+  }
 }

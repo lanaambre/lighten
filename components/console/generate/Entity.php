@@ -35,7 +35,7 @@ class Entity extends PhpGenerator
 
     $this->addClass($this->name, 'OrmTable'); // Open Class
 
-    // $this->addProperties('table', $this->table, 'protected');
+    $this->addProperties('table', $this->table, 'protected');
 
     foreach ($this->structure as $property) {
       $this->addProperties($property, null, 'protected');

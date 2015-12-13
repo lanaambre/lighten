@@ -113,8 +113,15 @@ class PhpGenerator
 
   protected function addProperties($property, $value = '', $restrict = 'private')
   {
-    if (!empty($value))
+    /**
+    * A finir: Gérer le cas ou la value est un boolean
+    **/
+
+    if (!empty($value)) {
+      $value = is_string($value) ? "'$value'" : $value;
       $value = ' = ' . $value;
+    }
+
 
     $this->addCode($restrict . ' $' . $property . $value . ';');
     $this->addLineBreak();

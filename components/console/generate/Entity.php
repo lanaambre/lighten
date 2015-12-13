@@ -33,9 +33,20 @@ class Entity extends PhpGenerator
     $this->addNamespace();
     $this->addUse();
 
-    var_dump($this->name);
     $this->addClass($this->name, 'OrmTable'); // Open Class
-    $this->addComments('Todo');
+
+    foreach ($this->structure as $property) {
+      $this->addProperties($property);
+    }
+    $this->addLineBreak();
+
+    foreach ($this->structure as $method) {
+      $this->addMethods($method, null, 'public');
+      $this->addComments('test');
+      $this->closeMethods();
+      $this->addLineBreak();
+    }
+
     $this->closeClass(); // Close Class
 
     file_put_contents("test.php", $this->code);

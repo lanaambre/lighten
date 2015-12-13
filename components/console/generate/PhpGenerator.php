@@ -35,9 +35,7 @@ class PhpGenerator
   protected function applyTabs()
   {
     for ($i=0; $i < $this->tabs; $i++) {
-      for ($i=0; $i < $this->tabsLength; $i++) {
-        $this->code .= ' ';
-      }
+      $this->code .= '  ';
     }
   }
 
@@ -83,7 +81,6 @@ class PhpGenerator
 
   protected function closeClass()
   {
-    $this->addLineBreak();
     $this->removeTabs();
     $this->addCode('}');
     $this->addLineBreak();
@@ -105,5 +102,40 @@ class PhpGenerator
       }
       $this->addLineBreak(2);
     }
+  }
+
+  protected function addProperties($property, $value = '', $restrict = 'private')
+  {
+    if (!empty($value))
+      $value = ' = ' . $value;
+
+    $this->addCode($restrict . ' $' . $property . $value . ';');
+    $this->addLineBreak();
+  }
+
+  protected function addMethods($method, $params = [], $restrict = 'private')
+  {
+    $paramsString = '';
+
+    if (!empty($params)) {
+      foreach ($params as $value) {
+        $paramsString .= $value . ', ';
+      }
+      $paramsString = rtrim($paramsString, ', ');
+    }
+
+    $this->addCode($restrict . ' function ' . $method . '(' .$paramsString . ')');
+    $this->addLineBreak();
+    $this->addCode('{');
+    $this->addLineBreak();
+    $this->addTabs();
+  }
+
+  protected function closeMethods()
+  {
+    $this->addLineBreak();
+    $this->removeTabs();
+    $this->addCode('}');
+    $this->addLineBreak();
   }
 }

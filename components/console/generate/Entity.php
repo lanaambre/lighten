@@ -30,18 +30,25 @@ class Entity extends PhpGenerator
   private function code()
   {
     $this->initCode();
+
+    // Namespaces and uses
     $this->addNamespace();
     $this->addUse();
 
+    // Open Class
     $this->addClass($this->name, 'OrmTable'); // Open Class
 
-    $this->addProperties('table', $this->table, 'protected');
 
+    // Add Properties
+    $this->addProperties('table', $this->table, 'protected');
+    $this->addLineBreak();
     foreach ($this->structure as $property) {
       $this->addProperties($property, null, 'protected');
     }
     $this->addLineBreak();
 
+
+    // Add Methods
     foreach ($this->structure as $method) {
       $this->addMethods('get' . ucfirst($method), null, 'public');
       $this->addCode('return $this->' . $method . ';');
@@ -54,6 +61,7 @@ class Entity extends PhpGenerator
       $this->addLineBreak();
     }
 
+    // Close Class
     $this->closeClass(); // Close Class
 
     file_put_contents("test.php", $this->code);

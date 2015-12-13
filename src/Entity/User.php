@@ -12,6 +12,8 @@ class User extends OrmTable
   protected $password;
   protected $active;
 
+  protected $_messages;
+
   public function getId()
   {
     return $this->id;

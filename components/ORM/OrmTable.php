@@ -5,35 +5,37 @@ namespace components\ORM;
 
 class OrmTable
 {
-  private $_class;
-  private $_update = false;
+  private $__class;
+  private $__update = false;
 
   public function __construct() {
-    $this->_class = get_class($this);
+    $this->__class = get_class($this);
   }
 
   protected function query()
   {
-    $req = new OrmQueryBuilder($this->_class);
+    $req = new OrmQueryBuilder($this->__class);
     $req->from($this->table);
     return $req;
   }
 
   public function _toUpdate()
   {
-    $this->_update = true;
+    $this->__update = true;
   }
 
   public function persist()
   {
     $data = get_object_vars($this);
+    foreach ($data as $key => $value) {
+      if ($key[0] === '_')
+        unset($data[$key]);
+    }
     unset($data['table']);
-    unset($data['_class']);
-    unset($data['_update']);
 
     $req = $this->query();
 
-    if ($this->_update)
+    if ($this->__update)
       return $req->update($data);
     else
       return $req->insert($data);

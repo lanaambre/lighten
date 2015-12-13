@@ -35,14 +35,21 @@ class Entity extends PhpGenerator
 
     $this->addClass($this->name, 'OrmTable'); // Open Class
 
+    // $this->addProperties('table', $this->table, 'protected');
+
     foreach ($this->structure as $property) {
-      $this->addProperties($property);
+      $this->addProperties($property, null, 'protected');
     }
     $this->addLineBreak();
 
     foreach ($this->structure as $method) {
-      $this->addMethods($method, null, 'public');
-      $this->addComments('test');
+      $this->addMethods('get' . ucfirst($method), null, 'public');
+      $this->addCode('return $this->' . $method . ';');
+      $this->closeMethods();
+      $this->addLineBreak();
+
+      $this->addMethods('set' . ucfirst($method), [$method], 'public');
+      $this->addCode('$this->' . $method . ' = $' . $method . ';');
       $this->closeMethods();
       $this->addLineBreak();
     }

@@ -32,6 +32,11 @@ class PhpGenerator
     }
   }
 
+  protected function removeLastLineBreak()
+  {
+    $this->code = rtrim($this->code, "\n");
+  }
+
   protected function applyTabs()
   {
     for ($i=0; $i < $this->tabs; $i++) {
@@ -81,6 +86,8 @@ class PhpGenerator
 
   protected function closeClass()
   {
+    $this->removeLastLineBreak();
+    $this->addLineBreak();
     $this->removeTabs();
     $this->addCode('}');
     $this->addLineBreak();
@@ -119,7 +126,7 @@ class PhpGenerator
 
     if (!empty($params)) {
       foreach ($params as $value) {
-        $paramsString .= $value . ', ';
+        $paramsString .= '$' . $value . ', ';
       }
       $paramsString = rtrim($paramsString, ', ');
     }
@@ -133,6 +140,7 @@ class PhpGenerator
 
   protected function closeMethods()
   {
+    $this->removeLastLineBreak();
     $this->addLineBreak();
     $this->removeTabs();
     $this->addCode('}');

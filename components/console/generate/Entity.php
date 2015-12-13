@@ -29,32 +29,39 @@ class Entity extends PhpGenerator
 
   private function code()
   {
+    // Add <?php
     $this->initCode();
+
 
     // Namespaces and uses
     $this->addNamespace();
     $this->addUse();
 
-    // Open Class
-    $this->addClass($this->name, 'OrmTable'); // Open Class
+
+    // Create class with extends
+    $this->addClass($this->name, 'OrmTable');
 
 
     // Add Properties
     $this->addProperties('table', $this->table, 'protected');
     $this->addLineBreak();
+
     foreach ($this->structure as $property) {
       $this->addProperties($property, null, 'protected');
     }
+
     $this->addLineBreak();
 
 
     // Add Methods
     foreach ($this->structure as $method) {
+      // Getters
       $this->addMethods('get' . ucfirst($method), null, 'public');
       $this->addCode('return $this->' . $method . ';');
       $this->closeMethods();
       $this->addLineBreak();
 
+      // Setters
       $this->addMethods('set' . ucfirst($method), [$method], 'public');
       $this->addCode('$this->' . $method . ' = $' . $method . ';');
       $this->closeMethods();

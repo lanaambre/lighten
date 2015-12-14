@@ -25,8 +25,6 @@ class OrmQueryBuilder
     $this->class = $class;
     $this->structure = $structure;
 
-    var_dump($class);
-    var_dump($structure);
     $this->db = OrmConfig::getConnexion();
   }
 
@@ -128,7 +126,8 @@ class OrmQueryBuilder
           $query->where([$this->_on[$key] => $entity->$method()]);
           $query->execute();
 
-          $entity->$value = $query->fetchAll(true);
+          $property = '_' . $value;
+          $entity->$property = $query->fetchAll();
         }
       }
 

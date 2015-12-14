@@ -1,6 +1,7 @@
 <?php
 
 namespace src\Entity;
+
 use components\ORM\OrmTable;
 
 class User extends OrmTable
@@ -12,7 +13,8 @@ class User extends OrmTable
   protected $password;
   protected $active;
 
-  protected $_messages;
+  public $_messages;
+  public $_articles;
 
   public function getId()
   {
@@ -54,11 +56,22 @@ class User extends OrmTable
     $this->active = $active;
   }
 
+  public function getMessages()
+  {
+    return $this->_messages;
+  }
+
+  public function getArticles()
+  {
+    return $this->_articles;
+  }
+
   public function getMessagesByName($name)
   {
     $req = $this->query();
     $res = $req->where(['username' => $name])
                ->join('messages')
+               ->join('articles')
                ->execute()
                ->fetchAll();
     return $res;

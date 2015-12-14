@@ -87,6 +87,8 @@ class OrmQueryBuilder
     $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
     $res = $this->query->execute($this->where);
 
+    if (!$res)
+      DbLog::error($this->query->errorInfo(), $this->query->queryString);
     DbLog::access($this->query->queryString);
 
     return $this;

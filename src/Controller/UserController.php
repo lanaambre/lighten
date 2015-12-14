@@ -10,10 +10,10 @@ class UserController
     {
       // Need to fix fetch/fetchAll [0] problem
       $entity = new User();
-      $user = $entity->getMessagesByName('Antoine')[0];
+      $user = $entity->getMessagesByName('fdsfdfdfsdfsd');
 
-      var_dump($user->getMessages());
-      var_dump($user->getArticles());
+      // var_dump($user->getMessages());
+      // var_dump($user->getArticles());
     }
 
     private function passwordHash($password)

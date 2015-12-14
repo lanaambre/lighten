@@ -6,6 +6,7 @@ class OrmQueryBuilder
 {
   private $db;
   private $class;
+  private $structure;
 
   private $query;
 
@@ -13,9 +14,19 @@ class OrmQueryBuilder
   private $from;
   private $where = [];
 
-  public function __construct($class)
+  private $selectJoin = '';
+  private $join = [];
+  private $on = [];
+  private $_on = [];
+
+  public function __construct($class = null, $structure = null)
   {
+    // Need to secure
     $this->class = $class;
+    $this->structure = $structure;
+
+    var_dump($class);
+    var_dump($structure);
     $this->db = OrmConfig::getConnexion();
   }
 
@@ -42,28 +53,31 @@ class OrmQueryBuilder
     return $this;
   }
 
-  public function join($join)
+  public function join($table, $on = 'id', $_on = null)
   {
-    if (is_array($join)) {
-      foreach ($join as $key => $value) {
-        $this->join[$key] = $value;
+    if(is_null($_on))
+      $_on = rtrim($this->from, 's') . 'Id';
+
+    // Need to secure
+
+    array_push($this->join, $table);
+    array_push($this->on, $on);
+    array_push($this->_on, $_on);
+
+    return $this;
+  }
+
+  public function selectJoin($columns = [])
+  {
+    if(!empty($this->join)) {
+      $this->selectJoin .= ', ';
+      foreach ($columns as $value) {
+        $this->selectJoin .= $this->join . '.' . $value . ', ';
       }
+      $this->selectJoin = rtrim($this->selectJoin, ', ');
     }
-  }
 
-  public function innerJoin()
-  {
-
-  }
-
-  public function joinLeft()
-  {
-
-  }
-
-  public function joinRight()
-  {
-
+    return $this;
   }
 
   public function execute()
@@ -99,6 +113,25 @@ class OrmQueryBuilder
         $method = 'set' . ucfirst($key);
         $entity->$method($value);
       }
+
+      // Jointures
+      if (!empty($this->join)) {
+        $data = [];
+
+        foreach ($this->join as $key => $value) {
+          $method = 'get' . ucfirst($this->on[$key]);
+
+          $class = ucfirst(substr($value, -1) == 'ies' ? rtrim($value, 'ies') . 'y' : rtrim($value, 's'));
+
+          $query = new OrmQueryBuilder('src\Entity\\' . $class);
+          $query->from($value);
+          $query->where([$this->_on[$key] => $entity->$method()]);
+          $query->execute();
+
+          $entity->$value = $query->fetchAll(true);
+        }
+      }
+
       array_push($res, $entity);
     }
 

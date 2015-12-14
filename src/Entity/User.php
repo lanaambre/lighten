@@ -54,14 +54,13 @@ class User extends OrmTable
     $this->active = $active;
   }
 
-  public function custom()
+  public function getMessagesByName($name)
   {
     $req = $this->query();
-    $req->select([
-      'username'
-    ]);
-    $req->execute();
-    $res = $req->fetchAll();
+    $res = $req->where(['username' => $name])
+               ->join('messages')
+               ->execute()
+               ->fetchAll();
     return $res;
   }
 }

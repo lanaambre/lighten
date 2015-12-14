@@ -10,17 +10,11 @@ class UserController
     {
       // Need to fix fetch/fetchAll [0] problem
       $entity = new User();
-      $user = $entity->custom();
-      // $user->setActive(true);
-      // $user->persist();
+      $user = $entity->getMessagesByName('Antoine');
+
 
       var_dump($user);
-
-      // $user = new User();
-      // $user->setUsername('Jean');
-      // $user->setPassword($this->passwordHash('fkdsjf'));
-      // $user->setActive(true);
-      // $user->persist();
+      
     }
 
     private function passwordHash($password)

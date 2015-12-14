@@ -7,14 +7,16 @@ class OrmTable
 {
   private $__class;
   private $__update = false;
+  private $__structure;
 
   public function __construct() {
     $this->__class = get_class($this);
+    $this->__structure = get_object_vars($this);
   }
 
   protected function query()
   {
-    $req = new OrmQueryBuilder($this->__class);
+    $req = new OrmQueryBuilder($this->__class, $this->__structure);
     $req->from($this->table);
     return $req;
   }

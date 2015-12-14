@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml\Tests;
+namespace components\tools\Yaml\Tests;
 
-use components\Yaml\Yaml;
-use components\Yaml\Parser;
+use components\tools\Yaml\Yaml;
+use components\tools\Yaml\Parser;
 
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -422,7 +422,7 @@ EOF;
     public function testObjectSupportEnabled()
     {
         $input = <<<EOF
-foo: !!php/object:O:30:"components\Yaml\Tests\B":1:{s:1:"b";s:3:"foo";}
+foo: !!php/object:O:30:"components\tools\Yaml\Tests\B":1:{s:1:"b";s:3:"foo";}
 bar: 1
 EOF;
         $this->assertEquals(array('foo' => new B(), 'bar' => 1), $this->parser->parse($input, false, true), '->parse() is able to parse objects');
@@ -439,7 +439,7 @@ EOF;
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testObjectsSupportDisabledWithExceptions()
     {
@@ -463,13 +463,13 @@ EOF;
 
                 $this->fail('charsets other than UTF-8 are rejected.');
             } catch (\Exception $e) {
-                $this->assertInstanceOf('components\Yaml\Exception\ParseException', $e, 'charsets other than UTF-8 are rejected.');
+                $this->assertInstanceOf('components\tools\Yaml\Exception\ParseException', $e, 'charsets other than UTF-8 are rejected.');
             }
         }
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testUnindentedCollectionException()
     {
@@ -486,7 +486,7 @@ EOF;
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testShortcutKeyUnindentedCollectionException()
     {
@@ -502,7 +502,7 @@ EOF;
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage Multiple documents are not supported.
      */
     public function testMultipleDocumentsNotSupportedException()
@@ -523,7 +523,7 @@ EOL
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testSequenceInAMapping()
     {
@@ -536,7 +536,7 @@ EOF
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testMappingInASequence()
     {
@@ -549,7 +549,7 @@ EOF
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage missing colon
      */
     public function testScalarInSequence()
@@ -785,7 +785,7 @@ EOF;
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage A colon cannot be used in an unquoted mapping value
      */
     public function testColonInMappingValueException()

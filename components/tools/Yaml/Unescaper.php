@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml;
+namespace components\tools\Yaml;
 
-use components\Yaml\Exception\ParseException;
+use components\tools\Yaml\Exception\ParseException;
 
 /**
  * Unescaper encapsulates unescaping rules for single and double-quoted

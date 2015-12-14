@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml;
+namespace components\tools\Yaml;
 
 /**
  * Dumper dumps PHP variables to YAML strings.

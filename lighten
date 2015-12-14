@@ -4,7 +4,7 @@
 require_once __DIR__ . '/components/autoload/autoload.php';
 
 use components\Kernel\ConsoleKernel as Kernel;
-use components\Yaml\Yaml;
+use components\tools\Yaml\Yaml;
 
 $db_infos = Yaml::parse(file_get_contents('config/db.yml'));
 

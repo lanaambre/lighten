@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml\Tests;
+namespace components\tools\Yaml\Tests;
 
-use components\Yaml\Yaml;
+use components\tools\Yaml\Yaml;
 
 class YamlTest extends \PHPUnit_Framework_TestCase
 {

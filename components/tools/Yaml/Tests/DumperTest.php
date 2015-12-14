@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml\Tests;
+namespace components\tools\Yaml\Tests;
 
-use components\Yaml\Parser;
-use components\Yaml\Dumper;
+use components\tools\Yaml\Parser;
+use components\tools\Yaml\Dumper;
 
 class DumperTest extends \PHPUnit_Framework_TestCase
 {
@@ -180,7 +180,7 @@ EOF;
     {
         $dump = $this->dumper->dump(array('foo' => new A(), 'bar' => 1), 0, 0, false, true);
 
-        $this->assertEquals('{ foo: !!php/object:O:30:"components\Yaml\Tests\A":1:{s:1:"a";s:3:"foo";}, bar: 1 }', $dump, '->dump() is able to dump objects');
+        $this->assertEquals('{ foo: !!php/object:O:30:"components\tools\Yaml\Tests\A":1:{s:1:"a";s:3:"foo";}, bar: 1 }', $dump, '->dump() is able to dump objects');
     }
 
     public function testObjectSupportDisabledButNoExceptions()
@@ -191,7 +191,7 @@ EOF;
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\DumpException
+     * @expectedException \components\tools\Yaml\Exception\DumpException
      */
     public function testObjectSupportDisabledWithExceptions()
     {

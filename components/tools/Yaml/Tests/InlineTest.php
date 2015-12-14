@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml\Tests;
+namespace components\tools\Yaml\Tests;
 
-use components\Yaml\Inline;
+use components\tools\Yaml\Inline;
 
 class InlineTest extends \PHPUnit_Framework_TestCase
 {
@@ -71,7 +71,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        \components\Yaml\Exception\ParseException
+     * @expectedException        \components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage Found unknown escape character "\V".
      */
     public function testParseScalarWithNonEscapedBlackslashShouldThrowException()
@@ -80,7 +80,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testParseScalarWithNonEscapedBlackslashAtTheEndShouldThrowException()
     {
@@ -88,7 +88,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testParseScalarWithIncorrectlyQuotedStringShouldThrowException()
     {
@@ -97,7 +97,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testParseScalarWithIncorrectlyDoubleQuotedStringShouldThrowException()
     {
@@ -106,7 +106,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testParseInvalidMappingKeyShouldThrowException()
     {
@@ -115,7 +115,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testParseInvalidMappingShouldThrowException()
     {
@@ -123,7 +123,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      */
     public function testParseInvalidSequenceShouldThrowException()
     {
@@ -171,7 +171,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage A reference must contain at least one character.
      */
     public function testParseUnquotedAsterisk()
@@ -180,7 +180,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \components\Yaml\Exception\ParseException
+     * @expectedException \components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage A reference must contain at least one character.
      */
     public function testParseUnquotedAsteriskFollowedByAComment()
@@ -190,7 +190,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getReservedIndicators
-     * @expectedException components\Yaml\Exception\ParseException
+     * @expectedException components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage cannot start a plain scalar; you need to quote the scalar.
      */
     public function testParseUnquotedScalarStartingWithReservedIndicator($indicator)
@@ -205,7 +205,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getScalarIndicators
-     * @expectedException components\Yaml\Exception\ParseException
+     * @expectedException components\tools\Yaml\Exception\ParseException
      * @expectedExceptionMessage cannot start a plain scalar; you need to quote the scalar.
      */
     public function testParseUnquotedScalarStartingWithScalarIndicator($indicator)

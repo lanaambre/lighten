@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml;
+namespace components\tools\Yaml;
 
-use components\Yaml\Exception\ParseException;
-use components\Yaml\Exception\DumpException;
+use components\tools\Yaml\Exception\ParseException;
+use components\tools\Yaml\Exception\DumpException;
 
 /**
  * Inline implements a YAML parser/dumper for the YAML inline syntax.

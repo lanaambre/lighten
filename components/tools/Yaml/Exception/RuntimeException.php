@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace components\Yaml\Exception;
+namespace components\tools\Yaml\Exception;
 
 /**
- * Exception interface for all exceptions thrown by the component.
+ * Exception class thrown when an error occurs during parsing.
  *
- * @author Fabien Potencier <fabien@symfony.com>
+ * @author Romain Neutron <imprec@gmail.com>
  */
-interface ExceptionInterface
+class RuntimeException extends \RuntimeException implements ExceptionInterface
 {
 }

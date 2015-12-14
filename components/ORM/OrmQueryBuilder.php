@@ -2,6 +2,8 @@
 
 namespace components\ORM;
 
+use components\logs\DbLog;
+
 class OrmQueryBuilder
 {
   private $db;
@@ -83,9 +85,9 @@ class OrmQueryBuilder
     $this->select = is_array($this->select) ? $this->selectBuilder($this->select) : $this->select;
 
     $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
-    $this->query->execute($this->where);
+    $res = $this->query->execute($this->where);
 
-    var_dump($this->query);
+    DbLog::access($this->query->queryString);
 
     return $this;
   }

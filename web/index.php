@@ -4,7 +4,7 @@
 require_once '../components/autoload/autoload.php';
 
 use components\ORM\OrmConfig;
-use src\Controller\UserController;
+use src\Controller\DefaultController;
 use components\tools\Yaml\Yaml;
 
 if (!file_exists('../config/config.yml')) {
@@ -17,4 +17,4 @@ $database = $config['database'];
 
 OrmConfig::init($database);
 
-$home = new UserController;
+$home = new DefaultController;

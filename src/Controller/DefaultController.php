@@ -4,11 +4,10 @@ namespace src\Controller;
 
 use src\Entity\User;
 
-class UserController
+class DefaultController
 {
     public function __construct()
     {
-      $user = new User();
-      var_dump($user->exist('username', 'Antoine'));
+      echo "Config OK\n";
     }
 }

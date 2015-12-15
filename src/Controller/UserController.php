@@ -13,6 +13,7 @@ class UserController
       $user = $entity->getMessagesByName('fdsfdfdfsdfsd');
 
       $entity = new User();
+      var_dump($entity->count(['username' => 'Lana']));
 
       // var_dump($user->getMessages());
       // var_dump($user->getArticles());

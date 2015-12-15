@@ -98,7 +98,7 @@ class OrmTable
     $res = $req->count($select)
                ->where($where)
                ->execute()
-               ->fetchAll();
-    return $res;
+               ->fetchAll(false);
+    return (int)$res[0]['count'];
   }
 }

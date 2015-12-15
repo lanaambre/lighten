@@ -23,7 +23,7 @@ class Dumper
      *
      * @var int
      */
-    protected $indentation = 4;
+    protected $indentation = 2;
 
     /**
      * Sets the indentation.

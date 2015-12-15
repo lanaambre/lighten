@@ -6,6 +6,7 @@ require_once __DIR__ . '/components/autoload/autoload.php';
 use components\Kernel\ConsoleKernel as Kernel;
 use components\tools\Yaml\Yaml;
 
-$db_infos = Yaml::parse(file_get_contents('config/db.yml'));
+$config = Yaml::parse(file_get_contents('config/config.yml'));
+$db_infos = $config['database'];
 
 new Kernel($argv, $db_infos);

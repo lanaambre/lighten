@@ -62,7 +62,7 @@ class Yaml
      *
      * @return string A YAML string representing the original PHP array
      */
-    public static function dump($array, $inline = 2, $indent = 4, $exceptionOnInvalidType = false, $objectSupport = false)
+    public static function dump($array, $inline = 2, $indent = 2, $exceptionOnInvalidType = false, $objectSupport = false)
     {
         $yaml = new Dumper();
         $yaml->setIndentation($indent);

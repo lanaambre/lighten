@@ -71,7 +71,29 @@ class Entity extends PhpGenerator
     // Close Class
     $this->closeClass(); // Close Class
 
-    file_put_contents("test.php", $this->code);
+    $path = 'src/Entity/' . $this->name . '.php';
+    if (!file_exists($path)) {
+      file_put_contents($path, $this->code);
+      echo "File " . $this->name . ".php generated\n";
+    }
+    else {
+      echo '-------------' . "\n";
+      echo '|  Warning  |' . "\n";
+      echo '-------------' . "\n";
+      echo 'Entity "' . $this->name . '" already exists.' . "\n";
+      echo 'Overwrite ' . $this->name . '.php ? (y/n) [n]: ';
+
+      $stdin = fopen('php://stdin', 'r');
+      $response = fgetc($stdin); // use fgetc for get only first character
+      $response = rtrim($response, "\n");
+      if (strtolower($response) === 'y') {
+        file_put_contents($path, $this->code);
+        echo "File overwriten\n";
+      } else {
+        echo "File not overwriten\n";
+      }
+
+    }
   }
 
   private function generateTableName($entity)

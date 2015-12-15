@@ -13,7 +13,7 @@ class OrmQueryBuilder
   private $query;
 
   private $select = '*';
-  private $count = '';
+  private $count = false;
   private $from;
   private $where = [];
 
@@ -37,9 +37,9 @@ class OrmQueryBuilder
     return $this;
   }
 
-  public function count($count)
+  public function count()
   {
-    $this->count = $count;
+    $this->count = true;
     return $this;
   }
 
@@ -91,8 +91,8 @@ class OrmQueryBuilder
   {
     $this->select = is_array($this->select) ? $this->selectBuilder($this->select) : $this->select;
 
-    if (!empty($this->count))
-      $this->select = 'COUNT(' . $this->count . ') as count';
+    if ($this->count)
+      $this->select = 'COUNT(*) as count';
 
     $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
     $res = $this->query->execute($this->where);

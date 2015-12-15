@@ -85,17 +85,17 @@ class OrmTable
     return $res;
   }
 
-  public function count($column = null, $where = [])
+  public function count($column = null, $value = null)
   {
-    $select = '*';
-
     if (is_array($column))
       $where = $column;
-    else if (is_string($column))
-      $select = $column;
+    else if (is_string($column) && is_string($value))
+      $where = [ $column => $value ];
+    else
+      $where = [];
 
     $req = $this->query();
-    $res = $req->count($select)
+    $res = $req->count()
                ->where($where)
                ->execute()
                ->fetchAll(false);

@@ -4,6 +4,7 @@ namespace components\console\project;
 
 use components\tools\Yaml\Dumper;
 use components\tools\Yaml\Yaml;
+use components\tools\security\Security;
 
 class Init
 {
@@ -67,6 +68,8 @@ class Init
     $response = rtrim($response, "\n");
     $response = empty($response) ? 'root' : $response;
     $this->input['database']['db_password'] = $response;
+
+    $this->input['security']['salt'] = Security::generateSalt();
 
     echo "Config ok: config/config.yml has been generated.\n";
 

@@ -4,3 +4,5 @@ database:
   db_name: orm_test
   db_user: root
   db_password: root
+security:
+  salt: 'x]4fz48[D:Hx{b[[H04fxD:b'

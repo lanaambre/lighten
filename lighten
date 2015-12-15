@@ -3,9 +3,10 @@
 
 require_once __DIR__ . '/components/autoload/autoload.php';
 
-use components\Kernel\ConsoleKernel as Kernel;
+use components\kernel\ConsoleKernel as Kernel;
 use components\tools\Yaml\Yaml;
 
+// Define rootpath
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__).DS);
 

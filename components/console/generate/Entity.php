@@ -72,11 +72,11 @@ class Entity extends PhpGenerator
     $this->closeClass(); // Close Class
 
     $path = 'src/Entity/' . $this->name . '.php';
+    
     if (!file_exists($path)) {
       file_put_contents($path, $this->code);
       echo "File " . $this->name . ".php generated\n";
-    }
-    else {
+    } else {
       echo '-------------' . "\n";
       echo '|  Warning  |' . "\n";
       echo '-------------' . "\n";
@@ -92,7 +92,6 @@ class Entity extends PhpGenerator
       } else {
         echo "File not overwriten\n";
       }
-
     }
   }
 

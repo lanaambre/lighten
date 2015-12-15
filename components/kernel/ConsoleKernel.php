@@ -16,12 +16,10 @@ class ConsoleKernel
       exit($this->getDocumentation());
     }
 
-    OrmConfig::init($db_infos);
-
     $commands = explode(':', array_shift($arguments));
     $object = 'components\console\\' . $commands[0] . '\\' . ucfirst($commands[1]);
 
-    new $object($arguments);
+    new $object($arguments, $db_infos);
   }
 
   private function getDocumentation()

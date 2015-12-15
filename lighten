@@ -6,11 +6,16 @@ require_once __DIR__ . '/components/autoload/autoload.php';
 use components\kernel\ConsoleKernel as Kernel;
 use components\tools\Yaml\Yaml;
 
+if (file_exists('config/config.yml')) {
+  $config = Yaml::parse(file_get_contents('config/config.yml'));
+  $db_infos = $config['database'];
+} else {
+  $db_infos = [];
+}
+
+
 // Define rootpath
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__).DS);
-
-$config = Yaml::parse(file_get_contents('config/config.yml'));
-$db_infos = $config['database'];
 
 new Kernel($argv, $db_infos);

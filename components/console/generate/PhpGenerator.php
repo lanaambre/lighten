@@ -2,6 +2,8 @@
 
 namespace components\console\generate;
 
+use components\ORM\OrmConfig;
+
 class PhpGenerator
 {
   protected $arguments;
@@ -11,8 +13,10 @@ class PhpGenerator
   protected $tabs = 0;
   protected $tabsLength = 2;
 
-  public function __construct($args)
+  public function __construct($args, $db_infos)
   {
+    OrmConfig::init($db_infos);
+
     $this->arguments = $args;
     $this->config();
   }

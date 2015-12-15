@@ -84,4 +84,21 @@ class OrmTable
                ->fetchAll();
     return $res;
   }
+
+  public function count($column = null, $where = [])
+  {
+    $select = '*';
+
+    if (is_array($column))
+      $where = $column;
+    else if (is_string($column))
+      $select = $column;
+
+    $req = $this->query();
+    $res = $req->count($select)
+               ->where($where)
+               ->execute()
+               ->fetchAll();
+    return $res;
+  }
 }

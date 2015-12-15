@@ -1,0 +1,6 @@
+project: ORM
+database:
+  db_host: localhost
+  db_name: orm_test
+  db_user: root
+  db_password: root

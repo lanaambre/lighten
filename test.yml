@@ -1,0 +1,6 @@
+project: ORM
+database:
+  db_host: localhosr
+  db_name: orm
+  db_user: root
+  db_password: root

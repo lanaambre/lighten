@@ -8,7 +8,7 @@ use src\Controller\DefaultController;
 use components\tools\Yaml\Yaml;
 
 if (!file_exists('../config/config.yml')) {
-  echo "Please config database, execute commands: php lighten project:init";
+  echo "Please config database, execute commands: 'php lighten project:init'";
   break;
 }
 

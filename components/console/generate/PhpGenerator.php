@@ -122,7 +122,6 @@ class PhpGenerator
       $value = ' = ' . $value;
     }
 
-
     $this->addCode($restrict . ' $' . $property . $value . ';');
     $this->addLineBreak();
   }

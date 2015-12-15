@@ -172,12 +172,12 @@ class OrmQueryBuilder
     // To do
   }
 
-  public function deleteById($id)
+  public function deleteById()
   {
     // To do
   }
 
-  public function deleteWhere($data)
+  public function deleteWhere()
   {
     // To do
   }

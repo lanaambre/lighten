@@ -5,8 +5,7 @@ node_modules/
 public/media/
 public/fonts/
 public/bower_components
-config/db.json
-config/db.yml
+config/config.yml
 config/security.json
 test.php
 

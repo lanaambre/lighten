@@ -18,7 +18,6 @@ class ConsoleKernel
 
     OrmConfig::init($db_infos);
 
-
     $commands = explode(':', array_shift($arguments));
     $object = 'components\console\\' . $commands[0] . '\\' . ucfirst($commands[1]);
 

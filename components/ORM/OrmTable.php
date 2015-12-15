@@ -85,6 +85,23 @@ class OrmTable
     return $res;
   }
 
+  public function getOneBy($column = null, $value = null)
+  {
+    if (is_array($column))
+      $where = $column;
+    else if (is_string($column) && is_string($value))
+      $where = [ $column => $value ];
+    else
+      $where = [];
+
+    // To Do
+  }
+
+  public function exist($column = null, $value = null)
+  {
+    return (bool)$this->getBy($column, $value);
+  }
+
   public function count($column = null, $value = null)
   {
     if (is_array($column))
@@ -99,6 +116,7 @@ class OrmTable
                ->where($where)
                ->execute()
                ->fetchAll(false);
+    
     return (int)$res[0]['count'];
   }
 }

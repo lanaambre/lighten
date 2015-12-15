@@ -9,7 +9,9 @@ class DbLog
     $access = "--------------------\n";
     $access .= date('j/m/Y H:i:s') . ': \'' . $sql . "'\n";
 
-    file_put_contents(__DIR__ . '/../../logs/db/access.log', $access, FILE_APPEND);
+    $path = __DIR__ . '/../../logs/db/access.log';
+
+    file_put_contents($path, $access, FILE_APPEND);
   }
 
   public static function error($errors, $sql = '')
@@ -19,6 +21,8 @@ class DbLog
 
     if (!empty($sql))
       $error .= '-> Query tried: \'' . $sql . "'\n";
+
+    $path = __DIR__ . '/../../logs/db/error.log';
 
     file_put_contents(__DIR__ . '/../../logs/db/error.log', $error, FILE_APPEND);
   }

@@ -119,6 +119,7 @@ class OrmQueryBuilder
 
     foreach ($raw as $key => $data) {
       $entity = new $this->class();
+      $entity->__data = $raw;
       $entity->_toUpdate();
 
       foreach ($data as $key => $value) {
@@ -151,12 +152,12 @@ class OrmQueryBuilder
     return $res;
   }
 
-  public function update($data)
+  public function update($data, $oldData)
   {
     $data = $this->clearData($data);
     $set = $this->updateSetBuilder($data);
 
-    $where = !empty($data['id']) ? 'id = :id' : $this->whereBuilder($data);
+    $where = !empty($data['id']) ? 'id = :id' : $this->whereBuilder($oldData);
     $whereValues = !empty($data['id']) ? ['id' => $data['id']] : $data;
 
     $sql = 'UPDATE ' . $this->from . ' SET ' . $set . ' WHERE ' . $where;
@@ -175,21 +176,17 @@ class OrmQueryBuilder
 
     $this->query = $this->db->prepare($sql);
     $res = $this->query->execute($data);
+
+    return $res;
   }
 
-  public function delete($data)
+  public function delete()
   {
-    // To do
-  }
+    $sql = 'DELETE FROM ' . $this->from . $this->whereBuilder();
 
-  public function deleteById()
-  {
-    // To do
-  }
-
-  public function deleteWhere()
-  {
-    // To do
+    $this->query = $this->db->prepare($sql);
+    var_dump($this->query);
+    return $this->query->execute($this->where);
   }
 
 

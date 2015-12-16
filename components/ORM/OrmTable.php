@@ -7,6 +7,7 @@ class OrmTable
 {
   private $__class;
   private $__update = false;
+  public $__data = [];
   private $__structure;
 
   public function __construct() {
@@ -38,9 +39,10 @@ class OrmTable
     $req = $this->query();
 
     if ($this->__update)
-      return $req->update($data);
-    else
+      return $req->update($data, $this->__data);
+    else {
       return $req->insert($data);
+    }
   }
 
   // Default methods
@@ -77,12 +79,12 @@ class OrmTable
     else
       $where = [];
 
-    $req = $this->query();
-    $res = $req->select()
-               ->where($where)
-               ->execute()
-               ->fetchAll();
-    return $res;
+      $req = $this->query();
+      $res = $req->select()
+                 ->where($where)
+                 ->execute()
+                 ->fetchAll();
+      return $res;
   }
 
   public function getOneBy($column = null, $value = null)
@@ -95,6 +97,23 @@ class OrmTable
       $where = [];
 
     // To Do
+  }
+
+  public function delete($column = null, $value = null)
+  {
+    if (is_array($column))
+      $where = $column;
+    else if (is_string($column) && is_string($value))
+      $where = [ $column => $value ];
+    else {
+      if (method_exists($this, 'getId'))
+        $where = ['id' => $this->getId()];
+      else
+        return false;
+    }
+
+    $req = $this->query();
+    return $req->where($where)->delete();
   }
 
   public function exist($column = null, $value = null)
@@ -116,7 +135,7 @@ class OrmTable
                ->where($where)
                ->execute()
                ->fetchAll(false);
-    
+
     return (int)$res[0]['count'];
   }
 }

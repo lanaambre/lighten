@@ -9,7 +9,7 @@ class DbLog
     $access = "--------------------\n";
     $access .= date('j/m/Y H:i:s') . ': \'' . $sql . "'\n";
 
-    $path = __DIR__ . '/../../logs/db/access.log';
+    $path = __DIR__ . "/../../logs/db/access.log";
 
     file_put_contents($path, $access, FILE_APPEND);
   }
@@ -22,7 +22,7 @@ class DbLog
     if (!empty($sql))
       $error .= '-> Query tried: \'' . $sql . "'\n";
 
-    $path = __DIR__ . '/../../logs/db/error.log';
+    $path = __DIR__ . "/../../logs/db/error.log";
 
     file_put_contents(__DIR__ . '/../../logs/db/error.log', $error, FILE_APPEND);
   }

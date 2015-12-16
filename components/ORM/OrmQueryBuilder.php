@@ -162,7 +162,13 @@ class OrmQueryBuilder
     $sql = 'UPDATE ' . $this->from . ' SET ' . $set . ' WHERE ' . $where;
 
     $this->query = $this->db->prepare($sql);
-    return $this->query->execute($whereValues);
+    $res = $this->query->execute($whereValues);
+
+    if (!$res)
+      DbLog::error($this->query->errorInfo(), $this->query->queryString);
+    DbLog::access($this->query->queryString);
+
+    return $res;
   }
 
   public function insert($data)
@@ -176,6 +182,10 @@ class OrmQueryBuilder
     $this->query = $this->db->prepare($sql);
     $res = $this->query->execute($data);
 
+    if (!$res)
+      DbLog::error($this->query->errorInfo(), $this->query->queryString);
+    DbLog::access($this->query->queryString);
+
     return $res;
   }
 
@@ -184,8 +194,13 @@ class OrmQueryBuilder
     $sql = 'DELETE FROM ' . $this->from . $this->whereBuilder();
 
     $this->query = $this->db->prepare($sql);
-    var_dump($this->query);
-    return $this->query->execute($this->where);
+    $res = $this->query->execute($this->where);
+    
+    if (!$res)
+      DbLog::error($this->query->errorInfo(), $this->query->queryString);
+    DbLog::access($this->query->queryString);
+
+    return $res;
   }
 
 

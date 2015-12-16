@@ -10,6 +10,10 @@ class DefaultController
     {
       echo "Config OK\n";
 
+      // select
+      $users = new User;
+      var_dump($users->getAll());
+
       // insert
       // $user = new User;
       // $user->setUsername('Michel');

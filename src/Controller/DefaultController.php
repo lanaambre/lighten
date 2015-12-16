@@ -8,7 +8,7 @@ class DefaultController
 {
     public function __construct()
     {
-      echo "Config OK\n";
+      echo "Config OK\n\n";
 
       // select
       $users = new User;
@@ -47,6 +47,5 @@ class DefaultController
       // $users = new User;
       // $user = $users->getBy('username', 'Michel')[0];
       // $user->delete();
-
     }
 }

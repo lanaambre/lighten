@@ -9,7 +9,7 @@ use components\tools\Yaml\Yaml;
 
 if (!file_exists('../config/config.yml')) {
   echo "Please config database, execute commands: 'php lighten project:init'";
-  break;
+  exit;
 }
 
 $config = Yaml::parse(file_get_contents('../config/config.yml'));

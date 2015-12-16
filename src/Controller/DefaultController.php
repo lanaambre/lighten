@@ -13,7 +13,7 @@ class DefaultController
       // insert
       // $user = new User;
       // $user->setUsername('Michel');
-      // $user->setPassword('azerty');
+      // $user->setPassword('chelmi');
       // $user->setActive(true);
       // $user->persist();
 
@@ -24,21 +24,19 @@ class DefaultController
       // $user->persist();
 
       // messages
-      $entity = new User;
-      $user = $entity->getByWithMessages('username', 'Antoine')[0];
-      var_dump($user);
-      var_dump($user->getMessages());
+      // $entity = new User;
+      // $user = $entity->getByWithMessages('username', 'Antoine')[0];
+      // var_dump($user->getMessages());
 
       // exist
-      $user = new User;
-      var_dump($user->exist('username', 'Lana'));
+      // $user = new User;
+      // var_dump($user->exist('username', 'Lana'));
 
       // count
-      $user = new User;
-      var_dump($user->count());
-
-      $user = new User;
-      var_dump($user->count('username', 'Antoine'));
+      // $user = new User;
+      // var_dump($user->count());
+      // $user = new User;
+      // var_dump($user->count('username', 'Antoine'));
 
 
       // delete

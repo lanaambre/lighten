@@ -119,7 +119,6 @@ class OrmQueryBuilder
 
     foreach ($raw as $key => $data) {
       $entity = new $this->class();
-      $entity->__data = $raw;
       $entity->_toUpdate();
 
       foreach ($data as $key => $value) {

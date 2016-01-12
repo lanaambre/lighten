@@ -3,6 +3,7 @@
 namespace components\console\generate;
 
 use components\ORM\OrmConfig;
+use components\console\builder\PhpGenerator;
 
 class Entity extends PhpGenerator
 {
@@ -72,7 +73,7 @@ class Entity extends PhpGenerator
     $this->closeClass(); // Close Class
 
     $path = 'src/Entity/' . $this->name . '.php';
-    
+
     if (!file_exists($path)) {
       file_put_contents($path, $this->code);
       echo "File " . $this->name . ".php generated\n";
@@ -80,7 +81,7 @@ class Entity extends PhpGenerator
       echo '-------------' . "\n";
       echo '|  Warning  |' . "\n";
       echo '-------------' . "\n";
-      echo 'Entity "' . $this->name . '" already exists.' . "\n";
+      echo 'File "' . $this->name . '" already exists.' . "\n";
       echo 'Overwrite ' . $this->name . '.php ? (y/n) [n]: ';
 
       $stdin = fopen('php://stdin', 'r');

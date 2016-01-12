@@ -1,6 +1,6 @@
 <?php
 
-namespace components\console\generate;
+namespace components\console\builder;
 
 use components\ORM\OrmConfig;
 

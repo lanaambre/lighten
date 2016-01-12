@@ -94,7 +94,7 @@ class OrmQueryBuilder
     if ($this->count)
       $this->select = 'COUNT(*) as count';
 
-    $this->query = $this->db->prepare('SELECT ' . $this->select . ' FROM ' . $this->from . $this->whereBuilder());
+    $this->query = $this->db->prepare('SELECT ' . $this->select . ' ROM ' . $this->from . $this->whereBuilder());
     $res = $this->query->execute($this->where);
 
     if (!$res)
@@ -195,7 +195,7 @@ class OrmQueryBuilder
 
     $this->query = $this->db->prepare($sql);
     $res = $this->query->execute($this->where);
-    
+
     if (!$res)
       DbLog::error($this->query->errorInfo(), $this->query->queryString);
     DbLog::access($this->query->queryString);
